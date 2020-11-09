@@ -14,3 +14,8 @@ export type MutationSigninVariables = {
   email: string
   password: string
 }
+
+export type MutationEditUserVariables = {
+  id: string,
+  contentPassword?: string | null,
+}

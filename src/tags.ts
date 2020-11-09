@@ -5,6 +5,7 @@ export type Tag = {
   id?: string,
   name?: string,
   books?: Book[],
+  isProtected?: boolean,
   __typename: 'Tag',
 }
 
@@ -20,8 +21,11 @@ export type MutationAddTagVariables = {
 export type MutationEditTagVariables = {
   id: ID,
   name?: string,
+  isProtected?: boolean,
 }
 
 export type MutationEditTagData = Tag
 
 export type MutationAddTagData = Required<Omit<Tag, 'books'>>
+
+export type QueryTagVariables = { id: string }

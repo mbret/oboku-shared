@@ -1,6 +1,6 @@
 import { ID } from './types';
 import { Book } from './books';
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 
 export type MutationAddBookVariables = {
   id: ID,
@@ -33,6 +33,7 @@ const mutationTypeDefs = `
   type Mutation {
     signup(email: String!, password: String!): AuthenticationResponse
     signin(email: String!, password: String!): AuthenticationResponse
+    editUser(id: ID!, contentPassword: String): User
 
     addBook(id: ID!, location: String!): MutationResponse
     removeBook(id: ID!): Book
@@ -50,7 +51,7 @@ const mutationTypeDefs = `
 
     addTag(id: ID!, name: String): Tag
     removeTag(id: ID!): MutationResponse
-    editTag(id: ID!, name: String): Tag
+    editTag(id: ID!, name: String, isProtected: Boolean): Tag
     
     addSeries(id: ID!, name: String): Series
     removeSeries(id: ID!): Series
@@ -65,6 +66,7 @@ export const typeDefs = gql`
   type User {
     id: ID!
     email: String
+    contentPassword: String
   }
 
   type Book {
@@ -97,6 +99,7 @@ export const typeDefs = gql`
     localId: ID!
     name: String
     books: [Book]
+    isProtected: Boolean
   }
 
   type Series {
