@@ -1,13 +1,13 @@
 import { ID } from './types';
 import { Book } from './books';
-export declare type MutationAddBookVariables = {
+export declare type MutationAddBookArgs = {
     id: ID;
     location: string;
 };
-export declare type MutationRemoveBookVariables = {
+export declare type MutationRemoveBookArgs = {
     id: ID;
 };
-export declare type MutationEditBookVariables = {
+export declare type MutationEditBookArgs = {
     id: string;
     lastMetadataUpdatedAt?: string | null;
     readingStateCurrentBookmarkLocation?: string;
