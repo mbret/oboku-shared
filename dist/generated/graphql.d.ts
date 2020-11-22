@@ -30,7 +30,7 @@ export declare type Book = {
     readingStateCurrentBookmarkProgressPercent?: Maybe<Scalars['Float']>;
     links?: Maybe<Array<Maybe<Link>>>;
     tags?: Maybe<Array<Maybe<Tag>>>;
-    series?: Maybe<Array<Maybe<Series>>>;
+    collections?: Maybe<Array<Maybe<Collections>>>;
     createdAt?: Maybe<Scalars['Float']>;
 };
 export declare type Books = {
@@ -52,8 +52,8 @@ export declare type Tag = {
     books?: Maybe<Array<Maybe<Book>>>;
     isProtected?: Maybe<Scalars['Boolean']>;
 };
-export declare type Series = {
-    __typename?: 'Series';
+export declare type Collections = {
+    __typename?: 'Collections';
     id: Scalars['ID'];
     name?: Maybe<Scalars['String']>;
     books?: Maybe<Array<Maybe<Book>>>;
@@ -62,8 +62,8 @@ export declare type Query = {
     __typename?: 'Query';
     tags?: Maybe<Array<Maybe<Tag>>>;
     tag?: Maybe<Tag>;
-    series?: Maybe<Array<Maybe<Series>>>;
-    oneSeries?: Maybe<Series>;
+    collections?: Maybe<Array<Maybe<Collections>>>;
+    collection?: Maybe<Collections>;
     books?: Maybe<Books>;
     book?: Maybe<Book>;
     links?: Maybe<Array<Maybe<Link>>>;
@@ -72,7 +72,7 @@ export declare type Query = {
 export declare type QueryTagArgs = {
     id: Scalars['ID'];
 };
-export declare type QueryOneSeriesArgs = {
+export declare type QueryOneCollectionsArgs = {
     id: Scalars['ID'];
 };
 export declare type QueryBookArgs = {
@@ -97,14 +97,14 @@ export declare type Mutation = {
     editBook?: Maybe<Book>;
     addTagsToBook?: Maybe<MutationResponse>;
     removeTagsToBook?: Maybe<MutationResponse>;
-    addSeriesToBook?: Maybe<MutationResponse>;
-    removeSeriesToBook?: Maybe<MutationResponse>;
+    addCollectionsToBook?: Maybe<MutationResponse>;
+    removeCollectionsToBook?: Maybe<MutationResponse>;
     addTag?: Maybe<Tag>;
     removeTag?: Maybe<MutationResponse>;
     editTag?: Maybe<Tag>;
-    addSeries?: Maybe<Series>;
-    removeSeries?: Maybe<Series>;
-    editSeries?: Maybe<Series>;
+    addCollections?: Maybe<Collections>;
+    removeCollections?: Maybe<Collections>;
+    editCollections?: Maybe<Collections>;
     addLink?: Maybe<MutationResponse>;
     editLink?: Maybe<MutationResponse>;
 };
@@ -142,13 +142,13 @@ export declare type MutationRemoveTagsToBookArgs = {
     id: Scalars['ID'];
     tags?: Maybe<Array<Maybe<Scalars['ID']>>>;
 };
-export declare type MutationAddSeriesToBookArgs = {
+export declare type MutationAddCollectionsToBookArgs = {
     id: Scalars['ID'];
-    series?: Maybe<Array<Maybe<Scalars['ID']>>>;
+    collections?: Maybe<Array<Maybe<Scalars['ID']>>>;
 };
-export declare type MutationRemoveSeriesToBookArgs = {
+export declare type MutationRemoveCollectionsToBookArgs = {
     id: Scalars['ID'];
-    series?: Maybe<Array<Maybe<Scalars['ID']>>>;
+    collections?: Maybe<Array<Maybe<Scalars['ID']>>>;
 };
 export declare type MutationAddTagArgs = {
     id: Scalars['ID'];
@@ -162,14 +162,14 @@ export declare type MutationEditTagArgs = {
     name?: Maybe<Scalars['String']>;
     isProtected?: Maybe<Scalars['Boolean']>;
 };
-export declare type MutationAddSeriesArgs = {
+export declare type MutationAddCollectionsArgs = {
     id: Scalars['ID'];
     name?: Maybe<Scalars['String']>;
 };
-export declare type MutationRemoveSeriesArgs = {
+export declare type MutationRemoveCollectionsArgs = {
     id: Scalars['ID'];
 };
-export declare type MutationEditSeriesArgs = {
+export declare type MutationEditCollectionsArgs = {
     id: Scalars['ID'];
     name?: Maybe<Scalars['String']>;
 };

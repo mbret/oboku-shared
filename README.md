@@ -1,27 +1,57 @@
 <p align="center">
-  
-  <a href="https://github.com/mbret/oboku">
-    <img src="https://user-images.githubusercontent.com/1911240/98496751-afc74900-2285-11eb-8ea4-852a3fbc2030.png" alt="Logo" width="200" height="200">
+  <a 
+  href="https://github.com/mbret/oboku">
+    <img src="https://user-images.githubusercontent.com/1911240/99893449-bca35e00-2cc3-11eb-88c1-80b3190eb620.png" alt="Logo" width="75" height="75">
   </a>
 
+  <h3 align="center">oboku</h3>
+
   <p align="center">
-    This is internal library used by Oboku. Please visit <a href="https://github.com/mbret/oboku/wiki">Oboku</a> for information about the product.
+    Your personal reading cloud library
+    <br>
+    <a href="https://reponame/issues/new?template=bug.md">Report bug</a>
+    ·
+    <a href="https://reponame/issues/new?template=feature.md&labels=feature">Request feature</a>
+  </p>
+
+  <p align="center">
+    <b>This is the shared library repository. Please visit <a href="https://github.com/mbret/oboku">oboku</a> main repository for more information.</>
   </p>
 </p>
 
-<br />
+## Table of contents
 
-## Table of Contents
+- [Table of contents](#table-of-contents)
+- [Quick start](#quick-start)
+- [Status](#status)
+- [Bugs and feature requests](#bugs-and-feature-requests)
+- [Creators](#creators)
+- [Copyright and license](#copyright-and-license)
 
-* [About the Project](#about-the-project)
-* [Contact](#contact)
+## Quick start
 
-## About The Project
+```sh
+$ npm install
+$ npm watch
+```
 
-### Oboku Shared
+## Status
 
-This is shared code between the API and Web app.
+This project is still under heavy development and is not officialy released yet.
 
-## Contact
+## Bugs and feature requests
 
-Maxime Bret - bret.maxime@gmail.com
+Have a bug or a feature request? Please search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github/mbret/issues/new).
+
+## Creators
+
+**Maxime Bret**
+
+- <https://github.com/mbret>
+
+
+## Copyright and license
+
+Code released under the [MIT License](https://mbret/oboku-landing/blob/master/LICENSE).
+
+Enjoy :metal:

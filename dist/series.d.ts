@@ -1,7 +1,7 @@
-import { Series } from "./generated/graphql";
+import { Collections } from "./generated/graphql";
 import { ID } from "./types";
-export declare type MutationAddSeriesData = Required<Series>;
-export declare type MutationEditSeriesData = {
+export declare type MutationAddCollectionsData = Required<Collections>;
+export declare type MutationEditCollectionsData = {
     id: ID;
     name: string;
 };
