@@ -3,4 +3,4 @@
  * offline and therefore is not secured yet. This is not intended for
  * fully secured solution
  */
-export declare const hashContentPassword: (password: string) => Promise<ArrayBuffer>;
+export declare const hashContentPassword: (password: string) => string;
