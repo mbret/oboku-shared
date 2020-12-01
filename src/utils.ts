@@ -1,5 +1,4 @@
-import * as sha256 from 'crypto-js/sha256';
-import * as Base64 from 'crypto-js/enc-base64'
+const sha256 = require("crypto-js/sha256")
 
 /**
  * The contentPassword is for user content protection. It is made to work
