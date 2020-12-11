@@ -11,4 +11,4 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 exports.__esModule = true;
 __exportStar(require("./errors"), exports);
-__exportStar(require("./utils"), exports);
+__exportStar(require("./docTypes"), exports);
