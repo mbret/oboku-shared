@@ -2,6 +2,7 @@ export enum LinkType {
   Uri = "URI",
   Drive = "DRIVE"
 }
+
 export type LinkDocType = {
   _id: string;
   _rev: string;
@@ -12,21 +13,28 @@ export type LinkDocType = {
   rx_model: 'link';
   contentLength?: number | null;
 };
+
 export enum DataSourceType {
   DRIVE = "DRIVE"
 }
+
 export type GoogleDriveDataSourceData = {
-  applyTags: string[];
-  driveId: string;
+  applyTags: string[]
+  driveId: string
+  folderName?: string
 };
+
 export type DataSourceDocType = {
   _id: string;
   _rev: string;
   type: DataSourceType;
   lastSyncedAt: number | null;
+  lastSyncErrorCode?: string | null,
+  credentials?: any
   data: string;
   rx_model: 'datasource';
 };
+
 export enum ReadingStateState {
   Finished = "FINISHED",
   NotStarted = "NOT_STARTED",
@@ -62,6 +70,7 @@ export type TagsDocType = {
   books: string[];
   rx_model: 'tag';
 };
+
 export type CollectionDocType = {
   _id: string;
   _rev: string;
@@ -76,20 +85,37 @@ export type CollectionDocType = {
   resourceId?: string | null;
   rx_model: 'obokucollection';
 };
+
 export function isTag(document: TagsDocType | unknown): document is TagsDocType {
   return (document as TagsDocType).rx_model === 'tag'
 }
+
 export function isBook(document: BookDocType | unknown): document is BookDocType {
   return (document as BookDocType).rx_model === 'book'
 }
+
 export function isLink(document: LinkDocType | unknown): document is LinkDocType {
   return (document as LinkDocType).rx_model === 'link'
 }
+
 export function isDataSource(document: DataSourceDocType | unknown): document is DataSourceDocType {
   return (document as DataSourceDocType).rx_model === 'datasource'
 }
+
 export function isCollection(document: CollectionDocType | unknown): document is CollectionDocType {
   return (document as CollectionDocType).rx_model === 'obokucollection'
+}
+
+type DataOf<D extends DataSourceDocType> =
+  D['type'] extends DataSourceType.DRIVE
+  ? GoogleDriveDataSourceData
+  : never
+
+export const extractDataSourceData = <D extends DataSourceDocType, Data extends DataOf<D>>({ data }: D): Data | undefined => {
+  try {
+    return JSON.parse(data)
+  } catch (e) { }
+  return undefined
 }
 
 type MangoOperator = '$lt' | '$lte' | '$eq' | '$ne' | '$gte' | '$gt' |

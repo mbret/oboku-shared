@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.isCollection = exports.isDataSource = exports.isLink = exports.isBook = exports.isTag = exports.ReadingStateState = exports.DataSourceType = exports.LinkType = void 0;
+exports.extractDataSourceData = exports.isCollection = exports.isDataSource = exports.isLink = exports.isBook = exports.isTag = exports.ReadingStateState = exports.DataSourceType = exports.LinkType = void 0;
 var LinkType;
 (function (LinkType) {
     LinkType["Uri"] = "URI";
@@ -36,3 +36,11 @@ function isCollection(document) {
     return document.rx_model === 'obokucollection';
 }
 exports.isCollection = isCollection;
+exports.extractDataSourceData = function (_a) {
+    var data = _a.data;
+    try {
+        return JSON.parse(data);
+    }
+    catch (e) { }
+    return undefined;
+};

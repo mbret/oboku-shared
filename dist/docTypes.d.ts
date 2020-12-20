@@ -18,12 +18,15 @@ export declare enum DataSourceType {
 export declare type GoogleDriveDataSourceData = {
     applyTags: string[];
     driveId: string;
+    folderName?: string;
 };
 export declare type DataSourceDocType = {
     _id: string;
     _rev: string;
     type: DataSourceType;
     lastSyncedAt: number | null;
+    lastSyncErrorCode?: string | null;
+    credentials?: any;
     data: string;
     rx_model: 'datasource';
 };
@@ -81,6 +84,8 @@ export declare function isBook(document: BookDocType | unknown): document is Boo
 export declare function isLink(document: LinkDocType | unknown): document is LinkDocType;
 export declare function isDataSource(document: DataSourceDocType | unknown): document is DataSourceDocType;
 export declare function isCollection(document: CollectionDocType | unknown): document is CollectionDocType;
+declare type DataOf<D extends DataSourceDocType> = D['type'] extends DataSourceType.DRIVE ? GoogleDriveDataSourceData : never;
+export declare const extractDataSourceData: <D extends DataSourceDocType, Data extends DataOf<D>>({ data }: D) => Data;
 declare type ConditionOperator<T> = {
     $nin?: any[];
 };
