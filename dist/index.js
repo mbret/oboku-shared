@@ -14,4 +14,5 @@ exports.Errors = void 0;
 var Errors = require("./errors");
 exports.Errors = Errors;
 __exportStar(require("./docTypes"), exports);
+__exportStar(require("./epub"), exports);
 __exportStar(require("./errors"), exports);
