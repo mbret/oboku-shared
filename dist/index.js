@@ -10,9 +10,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 exports.__esModule = true;
-exports.Errors = void 0;
+exports.validators = exports.Errors = void 0;
 var Errors = require("./errors");
 exports.Errors = Errors;
 __exportStar(require("./docTypes"), exports);
 __exportStar(require("./epub"), exports);
+var validators = require("./validators");
+exports.validators = validators;
 __exportStar(require("./errors"), exports);
