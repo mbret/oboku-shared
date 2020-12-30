@@ -5,6 +5,7 @@ var LinkType;
 (function (LinkType) {
     LinkType["Uri"] = "URI";
     LinkType["Drive"] = "DRIVE";
+    LinkType["File"] = "FILE";
 })(LinkType = exports.LinkType || (exports.LinkType = {}));
 var DataSourceType;
 (function (DataSourceType) {

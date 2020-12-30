@@ -1,6 +1,7 @@
 export declare enum LinkType {
     Uri = "URI",
-    Drive = "DRIVE"
+    Drive = "DRIVE",
+    File = "FILE"
 }
 export declare type LinkDocType = {
     _id: string;
