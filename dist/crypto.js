@@ -7,6 +7,7 @@ var sha256 = require("crypto-js/sha256");
  * offline and therefore is not secured yet. This is not intended for
  * fully secured solution
  */
-exports.hashContentPassword = function (password) {
+var hashContentPassword = function (password) {
     return sha256(password).toString();
 };
+exports.hashContentPassword = hashContentPassword;

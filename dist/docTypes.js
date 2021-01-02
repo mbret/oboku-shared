@@ -1,15 +1,12 @@
 "use strict";
 exports.__esModule = true;
-exports.extractDataSourceData = exports.isCollection = exports.isDataSource = exports.isLink = exports.isBook = exports.isTag = exports.ReadingStateState = exports.DataSourceType = exports.LinkType = void 0;
-var LinkType;
-(function (LinkType) {
-    LinkType["Uri"] = "URI";
-    LinkType["Drive"] = "DRIVE";
-    LinkType["File"] = "FILE";
-})(LinkType = exports.LinkType || (exports.LinkType = {}));
+exports.extractDataSourceData = exports.isCollection = exports.isDataSource = exports.isLink = exports.isBook = exports.isTag = exports.ReadingStateState = exports.DataSourceType = void 0;
 var DataSourceType;
 (function (DataSourceType) {
+    DataSourceType["URI"] = "URI";
     DataSourceType["DRIVE"] = "DRIVE";
+    DataSourceType["DROPBOX"] = "DROPBOX";
+    DataSourceType["FILE"] = "FILE";
 })(DataSourceType = exports.DataSourceType || (exports.DataSourceType = {}));
 var ReadingStateState;
 (function (ReadingStateState) {
@@ -37,7 +34,7 @@ function isCollection(document) {
     return document.rx_model === 'obokucollection';
 }
 exports.isCollection = isCollection;
-exports.extractDataSourceData = function (_a) {
+var extractDataSourceData = function (_a) {
     var data = _a.data;
     try {
         return JSON.parse(data);
@@ -45,3 +42,4 @@ exports.extractDataSourceData = function (_a) {
     catch (e) { }
     return undefined;
 };
+exports.extractDataSourceData = extractDataSourceData;

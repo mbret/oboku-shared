@@ -1,12 +1,7 @@
-export declare enum LinkType {
-    Uri = "URI",
-    Drive = "DRIVE",
-    File = "FILE"
-}
 export declare type LinkDocType = {
     _id: string;
     _rev: string;
-    type: LinkType;
+    type: DataSourceType;
     resourceId: string;
     data: string | null;
     book: string | null;
@@ -14,7 +9,10 @@ export declare type LinkDocType = {
     contentLength?: number | null;
 };
 export declare enum DataSourceType {
-    DRIVE = "DRIVE"
+    URI = "URI",
+    DRIVE = "DRIVE",
+    DROPBOX = "DROPBOX",
+    FILE = "FILE"
 }
 export declare type GoogleDriveDataSourceData = {
     applyTags: string[];
@@ -85,7 +83,7 @@ export declare function isBook(document: BookDocType | unknown): document is Boo
 export declare function isLink(document: LinkDocType | unknown): document is LinkDocType;
 export declare function isDataSource(document: DataSourceDocType | unknown): document is DataSourceDocType;
 export declare function isCollection(document: CollectionDocType | unknown): document is CollectionDocType;
-declare type DataOf<D extends DataSourceDocType> = D['type'] extends DataSourceType.DRIVE ? GoogleDriveDataSourceData : never;
+declare type DataOf<D extends DataSourceDocType> = D['type'] extends (DataSourceType.DRIVE) ? GoogleDriveDataSourceData : D['type'] extends (DataSourceType.DROPBOX) ? {} : never;
 export declare const extractDataSourceData: <D extends DataSourceDocType, Data extends DataOf<D>>({ data }: D) => Data;
 declare type ConditionOperator<T> = {
     $nin?: any[];

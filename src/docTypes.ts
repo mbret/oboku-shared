@@ -1,13 +1,7 @@
-export enum LinkType {
-  Uri = "URI",
-  Drive = "DRIVE",
-  File = 'FILE'
-}
-
 export type LinkDocType = {
   _id: string;
   _rev: string;
-  type: LinkType;
+  type: DataSourceType;
   resourceId: string;
   data: string | null;
   book: string | null;
@@ -16,7 +10,10 @@ export type LinkDocType = {
 };
 
 export enum DataSourceType {
-  DRIVE = "DRIVE"
+  URI = "URI",
+  DRIVE = "DRIVE",
+  DROPBOX = "DROPBOX",
+  FILE = 'FILE'
 }
 
 export type GoogleDriveDataSourceData = {
@@ -108,8 +105,10 @@ export function isCollection(document: CollectionDocType | unknown): document is
 }
 
 type DataOf<D extends DataSourceDocType> =
-  D['type'] extends DataSourceType.DRIVE
+  D['type'] extends (DataSourceType.DRIVE)
   ? GoogleDriveDataSourceData
+  : D['type'] extends (DataSourceType.DROPBOX)
+  ? {}
   : never
 
 export const extractDataSourceData = <D extends DataSourceDocType, Data extends DataOf<D>>({ data }: D): Data | undefined => {
