@@ -7,6 +7,8 @@ export type LinkDocType = {
   book: string | null;
   rx_model: 'link';
   contentLength?: number | null;
+  modifiedAt: string | null
+  createdAt: string
 };
 
 export enum DataSourceType {
@@ -18,9 +20,15 @@ export enum DataSourceType {
 
 export type GoogleDriveDataSourceData = {
   applyTags: string[]
-  driveId: string
+  folderId: string
   folderName?: string
 };
+
+export type DropboxDataSourceData = {
+  folderId: string
+  folderName: string
+  applyTags: string[]
+}
 
 export type DataSourceDocType = {
   _id: string;
@@ -31,6 +39,8 @@ export type DataSourceDocType = {
   credentials?: any
   data: string;
   rx_model: 'datasource';
+  modifiedAt: string | null
+  createdAt: string
 };
 
 export enum ReadingStateState {
@@ -38,7 +48,9 @@ export enum ReadingStateState {
   NotStarted = "NOT_STARTED",
   Reading = "READING"
 }
+
 export type InsertableBookDocType = Required<Omit<BookDocType, '_id' | '_rev'>>;
+
 export type BookDocType = {
   _id: string;
   _rev: string;
@@ -59,7 +71,9 @@ export type BookDocType = {
   collections: string[];
   title: string | null;
   rx_model: 'book';
+  modifiedAt: string | null
 };
+
 export type TagsDocType = {
   _id: string;
   _rev: string;
@@ -67,6 +81,8 @@ export type TagsDocType = {
   isProtected: boolean;
   books: string[];
   rx_model: 'tag';
+  modifiedAt: string | null
+  createdAt: string
 };
 
 export type CollectionDocType = {
@@ -82,6 +98,8 @@ export type CollectionDocType = {
    */
   resourceId?: string | null;
   rx_model: 'obokucollection';
+  modifiedAt: string | null
+  createdAt: string
 };
 
 export function isTag(document: TagsDocType | unknown): document is TagsDocType {
@@ -108,8 +126,8 @@ type DataOf<D extends DataSourceDocType> =
   D['type'] extends (DataSourceType.DRIVE)
   ? GoogleDriveDataSourceData
   : D['type'] extends (DataSourceType.DROPBOX)
-  ? {}
-  : never
+  ? DropboxDataSourceData
+  : GoogleDriveDataSourceData | DropboxDataSourceData
 
 export const extractDataSourceData = <D extends DataSourceDocType, Data extends DataOf<D>>({ data }: D): Data | undefined => {
   try {
@@ -124,7 +142,8 @@ type MangoOperator = '$lt' | '$lte' | '$eq' | '$ne' | '$gte' | '$gt' |
   '$or' | '$and' | '$nor' | '$not' | '$all' | '$allMatch' | '$elemMatch';
 
 type ConditionOperator<T> = {
-  $nin?: any[];
+  $nin?: any[]
+  $in?: any[]
 }
 
 interface MangoQuery<RxDocType> {

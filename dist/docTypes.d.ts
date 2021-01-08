@@ -7,6 +7,8 @@ export declare type LinkDocType = {
     book: string | null;
     rx_model: 'link';
     contentLength?: number | null;
+    modifiedAt: string | null;
+    createdAt: string;
 };
 export declare enum DataSourceType {
     URI = "URI",
@@ -16,8 +18,13 @@ export declare enum DataSourceType {
 }
 export declare type GoogleDriveDataSourceData = {
     applyTags: string[];
-    driveId: string;
+    folderId: string;
     folderName?: string;
+};
+export declare type DropboxDataSourceData = {
+    folderId: string;
+    folderName: string;
+    applyTags: string[];
 };
 export declare type DataSourceDocType = {
     _id: string;
@@ -28,6 +35,8 @@ export declare type DataSourceDocType = {
     credentials?: any;
     data: string;
     rx_model: 'datasource';
+    modifiedAt: string | null;
+    createdAt: string;
 };
 export declare enum ReadingStateState {
     Finished = "FINISHED",
@@ -55,6 +64,7 @@ export declare type BookDocType = {
     collections: string[];
     title: string | null;
     rx_model: 'book';
+    modifiedAt: string | null;
 };
 export declare type TagsDocType = {
     _id: string;
@@ -63,6 +73,8 @@ export declare type TagsDocType = {
     isProtected: boolean;
     books: string[];
     rx_model: 'tag';
+    modifiedAt: string | null;
+    createdAt: string;
 };
 export declare type CollectionDocType = {
     _id: string;
@@ -77,16 +89,19 @@ export declare type CollectionDocType = {
      */
     resourceId?: string | null;
     rx_model: 'obokucollection';
+    modifiedAt: string | null;
+    createdAt: string;
 };
 export declare function isTag(document: TagsDocType | unknown): document is TagsDocType;
 export declare function isBook(document: BookDocType | unknown): document is BookDocType;
 export declare function isLink(document: LinkDocType | unknown): document is LinkDocType;
 export declare function isDataSource(document: DataSourceDocType | unknown): document is DataSourceDocType;
 export declare function isCollection(document: CollectionDocType | unknown): document is CollectionDocType;
-declare type DataOf<D extends DataSourceDocType> = D['type'] extends (DataSourceType.DRIVE) ? GoogleDriveDataSourceData : D['type'] extends (DataSourceType.DROPBOX) ? {} : never;
+declare type DataOf<D extends DataSourceDocType> = D['type'] extends (DataSourceType.DRIVE) ? GoogleDriveDataSourceData : D['type'] extends (DataSourceType.DROPBOX) ? DropboxDataSourceData : GoogleDriveDataSourceData | DropboxDataSourceData;
 export declare const extractDataSourceData: <D extends DataSourceDocType, Data extends DataOf<D>>({ data }: D) => Data;
 declare type ConditionOperator<T> = {
     $nin?: any[];
+    $in?: any[];
 };
 interface MangoQuery<RxDocType> {
     selector?: {
