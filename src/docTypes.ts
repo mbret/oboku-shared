@@ -62,7 +62,7 @@ export type BookDocType = {
   publisher: string | null;
   readingStateCurrentBookmarkLocation: string | null;
   readingStateCurrentBookmarkProgressPercent: number;
-  readingStateCurrentBookmarkProgressUpdatedAt: number | null;
+  readingStateCurrentBookmarkProgressUpdatedAt: string | null;
   readingStateCurrentState: ReadingStateState;
   rights: string | null;
   subject: string[] | null;
