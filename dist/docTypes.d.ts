@@ -71,6 +71,7 @@ export declare type TagsDocType = {
     _rev: string;
     name: null | string;
     isProtected: boolean;
+    isBlurEnabled?: boolean;
     books: string[];
     rx_model: 'tag';
     modifiedAt: string | null;
